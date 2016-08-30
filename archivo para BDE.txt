@@ -19,14 +19,43 @@ archivo para BDE
   
 3) 
   SELECT AV.clave 
-  FROM Avenida AV
-  WHERE AV.contorno_id in
+  FROM Avenida AV, Poligono L, Contorno_Poligono CL
+  WHERE AV.poligono_id = L.poligono_id
+  AND   L.poligono_id = CL.poligono_id
+  AND   CL.contorno_id in
     (SELECT contorno_id 
      FROM CentroComercial CC, Poligono L, Contorno_Poligono CL
      WHERE CC.clave = 'cc'
      AND   CC.poligono_id = L.poligono_id
      AND   L. poligono_id = CL.poligono_id);
      
+4)
+  SELECT P.x, P.y 
+  FROM  Punto P, Punto_Contorno PC
+  WHERE P.punto_id = PC.punto_id
+  AND   PC.contorno_id in
+    (SELECT CL.contorno_id 
+     FROM Contorno_Poligono CL, Poligono L, Centro_Comercial CC
+     WHERE CC.clave='cc'
+     AND   CC.poligono_id = L.poligono_id
+     AND   L.poligono_id = CL.poligono_id
+     
+     INTERSEC
+     
+    SELECT CL.contorno_id 
+     FROM Contorno_Poligono CL, Poligono L, Area_Verde J
+     WHERE J.clave='A3'
+     AND   J.poligono_id = L.poligono_id
+     AND   L.poligono_id = CL.poligono_id);
+     
+6)
+  SELECT COM.clave
+  FROM  Comercio COM, Punto P, Punto_Contorno PC, Contorno C, Pasillo PA
+  WHERE PA.clave = 'AZUL'
+  AND   PA.contorno_id = C.contorno_id
+  AND   C.contorno_id = PC.contorno_id
+  AND   PC.punto_id = P.punto_id
+  AND   P.punto_id = COM.punto_id;
   
 11)
   SELECT P.x, P.y 
@@ -47,6 +76,6 @@ archivo para BDE
   AND   L.poligono_id = CL.poligono_id
   AND   CL.contorno_id = C.contorno_id
   AND   C.contorno_id = PC.contorno_id
-  AND   PC.punto_id = P.punto_id
+  AND   PC.punto_id = P.punto_id;
   
   
