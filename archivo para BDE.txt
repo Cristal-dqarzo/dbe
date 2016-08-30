@@ -1,1 +1,52 @@
 archivo para BDE
+1)
+  SELECT P.x, P.y 
+  FROM Punto P, Punto_Contorno PC, Contorno C, Contorno_Poligono CL, Poligono L, Escuela E
+  WHERE E.clave = 'SUR'
+  AND   E.poligono_id = L.poligono_id
+  AND   L.poligono_id = CL.poligono_id
+  AND   CL.contorno_id = C.contorno_id
+  AND   C.contorno_id = PC.contorno_id
+  AND   PC.punto_id = P.punto_id;
+
+2)
+  SELECT SQRT(POWER(CI.x - CA.x) + POWER (CI.y - CA.y))  distancia
+  FROM Comercio Cine, Comercio Cafe, Punto CI, Punto CA
+  WHERE Cine.clave = 'Cine'
+  AND   Cine.punto_id = CI.punto_id
+  AND   Cafe.clave = 'Cafetería'
+  AND   Cafe.punto_id = CA.punto_id;
+  
+3) 
+  SELECT AV.clave 
+  FROM Avenida AV
+  WHERE AV.contorno_id in
+    (SELECT contorno_id 
+     FROM CentroComercial CC, Poligono L, Contorno_Poligono CL
+     WHERE CC.clave = 'cc'
+     AND   CC.poligono_id = L.poligono_id
+     AND   L. poligono_id = CL.poligono_id);
+     
+  
+11)
+  SELECT P.x, P.y 
+  FROM Avenida AV, Poligono L, Contorno_Poligono CL, Contorno C, Punto_Contorno PC, Punto P
+  WHERE AV.clave = 'NORTE'
+  AND   AV.poligono_id = L.poligono_id
+  AND   L.poligono_id = CL.poligono_id
+  AND   CL.contorno_id = C.contorno_id
+  AND   C.contorno_id = PC.contorno_id
+  AND   PC.punto_id = P.punto_id
+  
+  INTERSEC
+  
+  SELECT P.x, P.y 
+  FROM Avenida AV, Poligono L, Contorno_Poligono CL, Contorno C, Punto_Contorno PC, Punto P
+  WHERE AV.clave = 'CENTRAL'
+  AND   AV.poligono_id = L.poligono_id
+  AND   L.poligono_id = CL.poligono_id
+  AND   CL.contorno_id = C.contorno_id
+  AND   C.contorno_id = PC.contorno_id
+  AND   PC.punto_id = P.punto_id
+  
+  
