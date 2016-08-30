@@ -1,0 +1,19 @@
+﻿Según la imagen y los datos del excel, además del análisis las propociones para obtener las cardinalidades serán las siguientes...
+
+Un punto...
+	*puede conformar cero o más contornos.
+	*puede representar un comercio.
+
+Un contorno...
+	*puede ser representado por dos o más puntos.
+	*puede conformar cero o más polígonos.
+	*puede representar un pasillo.
+	
+
+Un polígono...
+	*puede ser reprentado por 3 o más contornos.
+	*puede representar cero o un edificio.
+	*puede representar cero o una avenida.
+	*puede representar cero o un área verde.
+	*puede representar cero o una escuela.
+	*puede representar cero o un centro comercial.
